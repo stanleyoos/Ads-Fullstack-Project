@@ -13,6 +13,8 @@ const app = express()
 
 connectDB()
 
+require("dotenv").config()
+
 app.listen(port, () => {
   console.log(`Server is listening on port: ${port}`)
 })
@@ -29,7 +31,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
   session({
-    secret: "xyz890",
+    secret: process.env.SESSION_SECRET,
     store: MongoStore.create(mongoose.connection),
     resave: false,
     saveUninitialized: false,

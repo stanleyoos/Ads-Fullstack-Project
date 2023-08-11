@@ -1,5 +1,7 @@
 const Ad = require("../models/Ad.model")
 const User = require("../models/User.model")
+const getImageFileType = require("../utils/getImageFileType")
+const fs = require("fs")
 
 const getAll = async (req, res) => {
   try {
@@ -27,7 +29,7 @@ const getBySearchedPhrase = async (req, res) => {
         { title: { $regex: `${phrase}` } },
         { content: { $regex: `${phrase}` } },
       ],
-    })
+    }).populate("userInfo")
     if (ads) {
       res.status(200).json(ads)
     } else {
@@ -39,11 +41,15 @@ const getBySearchedPhrase = async (req, res) => {
 }
 
 const deleteOne = async (req, res) => {
+  // delete ad only when req.session.user.id === ad.userInfo
+  // users can only delete their ads
   try {
     const ad = await Ad.findById(req.params.id)
     if (ad) {
-      await Ad.deleteOne({ _id: req.params.id })
-      res.json(ad)
+      if (ad.userInfo === req.session.user._id) {
+        await Ad.deleteOne({ _id: req.params.id })
+        res.json(ad)
+      } else res.status(404).json({ message: "You can delete only your ads!" })
     } else res.status(404).json({ message: "Not found..." })
   } catch (error) {
     res.status(500).json({ message: error })
@@ -52,55 +58,75 @@ const deleteOne = async (req, res) => {
 
 const addNewAd = async (req, res) => {
   try {
-    const { title, content, date, image, price, localization, userInfo } =
-      req.body
+    const { title, content, price, localization } = req.body
+
+    const fileType = req.file ? await getImageFileType(req.file) : "unknown"
+    const acceptableExt = ["image/png", "image/jpeg", "image/gif"]
+
     if (
-      !title ||
-      !content ||
-      !date ||
-      !image ||
-      !price ||
-      !localization ||
-      !userInfo
+      title &&
+      typeof title === "string" &&
+      content &&
+      typeof content === "string" &&
+      price &&
+      typeof price === "string" &&
+      localization &&
+      typeof localization === "string" &&
+      req.file &&
+      acceptableExt.includes(fileType)
     ) {
-      res.status(400).json({ message: "Fill all fields!" })
+      // add new ad
+
+      const newAd = new Ad({
+        title,
+        content,
+        // czy datę powinno dać się wybrać z datePickera czy lepszym rozwiązaniem jest po prostu Date.now() ?
+        date: Date.now(),
+        price,
+        localization,
+        userInfo: req.session.user._id,
+        image: req.file.filename,
+      })
+      await newAd.save()
+      res.status(201).json({
+        message: `New ad with title "${newAd.title}" has been added!`,
+      })
+    } else {
+      fs.unlinkSync(`${req.file.destination}/${req.file.filename}`)
+      res.status(400).json({ message: "Bad request" })
     }
-    const newAd = new Ad({
-      title,
-      content,
-      date,
-      image,
-      price,
-      localization,
-      userInfo,
-    })
-    await newAd.save()
-    res.json({ message: "ok" })
   } catch (error) {
     res.status(500).json({ message: error })
   }
 }
 
 const editAd = async (req, res) => {
-  const { title, content, date, image, price, localization, userInfo } =
-    req.body
+  const { title, content, date, price, localization, userInfo } = req.body
   try {
     const ad = await Ad.findById(req.params.id)
+    const fileType = req.file ? await getImageFileType(req.file) : "unknown"
+    const acceptableExt = ["image/png", "image/jpeg", "image/gif"]
     if (ad) {
-      ad.title = title || ad.title
-      ad.content = content || ad.content
-      ad.date = date || ad.date
-      ad.image = image || ad.image
-      ad.price = price || ad.price
-      ad.localization = localization || ad.localization
-      ad.userInfo = userInfo || ad.userInfo
+      ad.title = typeof title === "string" ? title : ad.title
+      ad.content = typeof content === "string" ? content : ad.content
+      ad.date = typeof date === "string" ? date : ad.date
+      ad.image =
+        req.file.filename && acceptableExt.includes(fileType)
+          ? req.file.filename
+          : ad.image
+      ad.price = typeof price === "string" ? price : ad.price
+      ad.localization =
+        typeof localization === "string" ? localization : ad.localization
+      ad.userInfo = typeof userInfo === "string" ? userInfo : ad.userInfo
+
       await ad.save()
       res.json(ad)
     } else {
+      fs.unlinkSync(`${req.file.destination}/${req.file.filename}`)
       res.status(404).json({ message: "Not found..." })
     }
   } catch (error) {
-    res.status(500).json({ message: err })
+    res.status(500).json({ message: error })
   }
 }
 
