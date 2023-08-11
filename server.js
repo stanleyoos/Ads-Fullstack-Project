@@ -1,6 +1,7 @@
 const express = require("express")
 const connectDB = require("./config/db")
 const cors = require("cors")
+const path = require("path")
 const session = require("express-session")
 const MongoStore = require("connect-mongo")
 const mongoose = require("mongoose")
@@ -43,6 +44,8 @@ app.use(
 
 app.use("/api/ads", adsRoutes)
 app.use("/api/auth", authRoutes)
+
+app.use(express.static(path.join(__dirname, "/public")))
 
 app.use(errorHandler)
 
