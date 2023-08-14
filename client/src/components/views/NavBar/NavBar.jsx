@@ -1,26 +1,43 @@
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import LoginIcon from '@mui/icons-material/Login';
+import Container from '@mui/material/Container';
+import Bookmark from '@mui/icons-material/Bookmark';
+import styles from './NavBar.module.scss'
+import { Link } from "react-router-dom";
 
 
-export default function ButtonAppBar() {
+
+
+const  NavBar = () => {
+  
+
+  
+  
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
+    <AppBar position="static">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters className={styles.toolbar}>
+          <Link className={styles.bookmarkLink} to='/about'><Bookmark  sx={{  mr: 1 }} /></Link>
+          <Link className={styles.bookmarkLink} to='/'>
+            <div className={styles.adService}>
+            AD SERVICE
+            </div>
+          </Link>
+          <Box >
           
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Ad service
-          </Typography>
-          <Button color="inherit">
-            <LoginIcon />
-            Login</Button>
+          <Link sx={{  mr: 2 }}  to='/about'>Sign in</Link>
+          <Link sx={{  mr: 2 }} to='/about'>Sign up</Link>
+
+          {/* render only when user is logged in  */}
+          {/* <Link sx={{  mr: 2 }} to='/about'>Sign out</Link> */}
+          
+            
+          </Box>
         </Toolbar>
-      </AppBar>
-    </Box>
+      </Container>
+    </AppBar>
   );
 }
+export default NavBar;
