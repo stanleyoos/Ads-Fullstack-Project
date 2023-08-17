@@ -1,7 +1,5 @@
 import AllAds from "../../features/AllAds/AllAds"
 
-
-
 const HomePage = () => {
   return (
     <>
