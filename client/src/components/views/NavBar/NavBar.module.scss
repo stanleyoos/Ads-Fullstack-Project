@@ -1,0 +1,23 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 500px) {
+  .adService {
+    display: none;
+  }
+}
+
+.adService {
+  text-decoration: none;
+  font-family: monospace;
+  letter-spacing: 0.3rem;
+  font-size: 30px;
+}
+
+.bookmarkLink a:link,
+a:visited {
+  color: white;
+  text-decoration: none;
+}
