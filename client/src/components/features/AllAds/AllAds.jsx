@@ -1,8 +1,9 @@
-import {useSelector} from 'react-redux'
-import { getAllAds } from '../../../redux/subreducers/adRedux'
+import { useSelector } from "react-redux"
+import { getAllAds } from "../../../redux/subreducers/adRedux"
 import { Spinner } from "react-bootstrap"
-import Add from '../Add/Add'
-
+import Add from "../Add/Add"
+import Container from "react-bootstrap/Container"
+import Row from "react-bootstrap/Row"
 
 const AllAds = () => {
   const ads = useSelector(getAllAds)
@@ -24,10 +25,15 @@ const AllAds = () => {
     )
   }
 
-
   return (
     <>
-    {ads.map(add => (<Add {...add} key={add._id}/>))}
+      <Container>
+        <Row className="justify-content-center">
+          {ads.map((add) => (
+            <Add {...add} key={add._id} />
+          ))}
+        </Row>
+      </Container>
     </>
   )
 }

@@ -8,7 +8,7 @@ import NotFound from "./components/pages/NotFound/NotFound"
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { fetchAds } from "./redux/subreducers/adRedux"
-import SingleAdd from "./components/pages/SingleAdd/SingleAdd"
+import SingleAd from "./components/pages/SingleAd/SingleAd"
 
 function App() {
   const dispatch = useDispatch()
@@ -24,7 +24,7 @@ function App() {
         <Route path="/about" element={<About />} />
         {/* <Route path="/add/table" element={<AddTable />} />
     <Route path="/table/:id" element={<SingleTable />} /> */}
-        <Route path="/add/:id" element={<SingleAdd />} />
+        <Route path="/ad/:id" element={<SingleAd />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
