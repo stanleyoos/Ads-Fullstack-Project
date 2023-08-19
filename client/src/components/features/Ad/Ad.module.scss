@@ -1,3 +1,5 @@
+@import "../../../style.scss";
+
 .trash {
   &:hover {
     cursor: pointer;
@@ -6,4 +8,18 @@
 
 .card {
   margin: 20px 20px;
+}
+
+.adImage {
+  max-width: 262px;
+  max-height: 182px;
+  object-fit: cover;
+}
+
+.cardTitle {
+  color: $second-color-blue;
+}
+
+.cardContent {
+  color: $main-color-gray;
 }

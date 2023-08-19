@@ -2,19 +2,20 @@ import Button from "react-bootstrap/Button"
 import Card from "react-bootstrap/Card"
 import styles from "./Ad.module.scss"
 import { Link } from "react-router-dom"
+import clsx from "clsx"
 
 function Ad({ title, image, content, _id }) {
   return (
     <Card className={styles.card} style={{ width: "18rem" }}>
       <Card.Img
-        className="rounded mt-2"
+        className={clsx("rounded mt-2", styles.adImage)}
         variant="top"
         src={"http://localhost:8000/uploads/" + image}
         alt="ad's image"
       />
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>{content}</Card.Text>
+        <Card.Title className={styles.cardTitle}>{title}</Card.Title>
+        <Card.Text className={styles.cardContent}>{content}</Card.Text>
         <Link to={`/ad/${_id}`}>
           <Button variant="light">Details</Button>
         </Link>

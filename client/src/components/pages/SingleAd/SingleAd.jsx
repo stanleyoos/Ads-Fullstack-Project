@@ -6,6 +6,8 @@ import styles from "./SingleAd.module.scss"
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+import Card from "react-bootstrap/Card"
+import { FaTrash, FaEdit } from "react-icons/fa"
 
 const SingleAd = () => {
   const { id } = useParams()
@@ -13,20 +15,45 @@ const SingleAd = () => {
   const ad = useSelector((state) => getSingleAd(state, id))
 
   if (ad === undefined) redirect("/")
+
+  const handleAdEdit = () => {
+    alert("Ad edit")
+  }
+  const handleAdDelete = () => {
+    alert("Ad delete")
+  }
+
   return (
     <>
       <Container>
         <Row>
-          <Col sm={6}>
+          <Col sm={6} className="text-center">
             <Image
               src={"http://localhost:8000/uploads/" + ad.image}
               alt="ad's image"
-              className="rounded"
+              className="rounded "
               fluid
             />
           </Col>
           <Col sm={6} className="justify-content-center">
-            <h4 className="text-center">{ad.title}</h4>
+            <Card style={{ width: "auto" }}>
+              <Card.Body>
+                <h1 className={styles.cardTitle}>{ad.title}</h1>
+
+                <Card.Text className={styles.cardContent}>
+                  {ad.content}
+                </Card.Text>
+
+                <Card.Text className={styles.cardPrice}>{ad.price} $</Card.Text>
+
+                <Card.Text className={styles.cardDate}>{ad.date}</Card.Text>
+
+                <div className={styles.links}>
+                  <FaTrash onClick={handleAdDelete} className="me-3" />
+                  <FaEdit onClick={handleAdEdit} />
+                </div>
+              </Card.Body>
+            </Card>
           </Col>
         </Row>
       </Container>

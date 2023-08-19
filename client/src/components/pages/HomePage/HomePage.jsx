@@ -1,10 +1,11 @@
 import AllAds from "../../features/AllAds/AllAds"
+import SearchBox from "../../features/SearchBox/SearchBox"
 
 const HomePage = () => {
   return (
     <>
-    <h1 className="text-center">HomePage</h1>
-    <AllAds/>
+      <SearchBox />
+      <AllAds />
     </>
   )
 }
