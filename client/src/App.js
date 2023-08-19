@@ -17,18 +17,20 @@ function App() {
     dispatch(fetchAds())
   }, [dispatch])
   return (
-    <Container>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<About />} />
-        {/* <Route path="/add/table" element={<AddTable />} />
+    <>
+      <Container>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<About />} />
+          {/* <Route path="/add/table" element={<AddTable />} />
     <Route path="/table/:id" element={<SingleTable />} /> */}
-        <Route path="/ad/:id" element={<SingleAd />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route path="/ad/:id" element={<SingleAd />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Container>
       <Footer />
-    </Container>
+    </>
   )
 }
 

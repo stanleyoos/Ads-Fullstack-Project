@@ -45,6 +45,7 @@ app.use(
 app.use("/api/ads", adsRoutes)
 app.use("/api/auth", authRoutes)
 
+app.use(express.static(path.join(__dirname, "/uploads/")))
 app.use(express.static(path.join(__dirname, "/public")))
 
 app.use(errorHandler)
