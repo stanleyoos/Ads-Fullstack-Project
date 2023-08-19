@@ -1,7 +1,4 @@
-const API_URL =
-  process.env.NODE_ENV === "production"
-    ? "production URL: /api"
-    : "http://localhost:8000/api"
+import { API_URL } from "../../config"
 
 // SELECTORS
 // Get all ads

@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import { NavLink } from "react-router-dom"
-import { FaSignInAlt } from "react-icons/fa"
+import { FaSignInAlt, FaUserPlus } from "react-icons/fa"
 //import styles from "./NavBar.module.scss"
 
 const NavBar = () => {
@@ -22,9 +22,13 @@ const NavBar = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link as={NavLink} to="/">
+              <Nav.Link as={NavLink} to="/login">
                 <FaSignInAlt className="me-1" />
                 Login
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/register">
+                <FaUserPlus className="me-1" />
+                Register
               </Nav.Link>
               <Nav.Link as={NavLink} to="/about">
                 About
