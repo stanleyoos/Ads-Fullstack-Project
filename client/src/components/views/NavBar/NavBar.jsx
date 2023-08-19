@@ -2,6 +2,7 @@ import Container from "react-bootstrap/Container"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import { NavLink } from "react-router-dom"
+import { FaSignInAlt } from "react-icons/fa"
 //import styles from "./NavBar.module.scss"
 
 const NavBar = () => {
@@ -22,7 +23,8 @@ const NavBar = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
               <Nav.Link as={NavLink} to="/">
-                Home
+                <FaSignInAlt className="me-1" />
+                Login
               </Nav.Link>
               <Nav.Link as={NavLink} to="/about">
                 About

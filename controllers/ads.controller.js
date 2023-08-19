@@ -58,7 +58,7 @@ const deleteOne = async (req, res) => {
 
 const addNewAd = async (req, res) => {
   try {
-    const { title, content, price, localization } = req.body
+    const { title, content, price, localization, date } = req.body
 
     const fileType = req.file ? await getImageFileType(req.file) : "unknown"
     const acceptableExt = ["image/png", "image/jpeg", "image/gif"]
@@ -76,12 +76,11 @@ const addNewAd = async (req, res) => {
       acceptableExt.includes(fileType)
     ) {
       // add new ad
-
       const newAd = new Ad({
         title,
         content,
         // czy datę powinno dać się wybrać z datePickera czy lepszym rozwiązaniem jest po prostu Date.now() ?
-        date: Date.now(),
+        date,
         price,
         localization,
         userInfo: req.session.user._id,

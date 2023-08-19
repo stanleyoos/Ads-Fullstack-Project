@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Card from "react-bootstrap/Card"
 import { FaTrash, FaEdit } from "react-icons/fa"
+import dateToString from "../../../utils/dateToString"
 
 const SingleAd = () => {
   const { id } = useParams()
@@ -22,6 +23,9 @@ const SingleAd = () => {
   const handleAdDelete = () => {
     alert("Ad delete")
   }
+  const date = new Date()
+
+  console.log(date)
 
   return (
     <>
@@ -46,7 +50,9 @@ const SingleAd = () => {
 
                 <Card.Text className={styles.cardPrice}>{ad.price} $</Card.Text>
 
-                <Card.Text className={styles.cardDate}>{ad.date}</Card.Text>
+                <Card.Text className={styles.cardDate}>
+                  {dateToString(ad.date)}
+                </Card.Text>
 
                 <div className={styles.links}>
                   <FaTrash onClick={handleAdDelete} className="me-3" />
