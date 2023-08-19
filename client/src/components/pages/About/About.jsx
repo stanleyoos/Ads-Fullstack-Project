@@ -1,9 +1,7 @@
-
+import styles from "./About.module.scss"
 
 const About = () => {
-  return (
-    <h1 className="text-center">About</h1>
-  )
+  return <div className={styles.about}>Copyright © AdsApp 2023</div>
 }
 
 export default About

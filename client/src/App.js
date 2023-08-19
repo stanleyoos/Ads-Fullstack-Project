@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom"
 import Container from "./components/common/Container/Container"
-import Footer from "./components/views/Footer/Footer"
 import NavBar from "./components/views/NavBar/NavBar"
 import HomePage from "./components/pages/HomePage/HomePage"
 import About from "./components/pages/About/About"
@@ -39,7 +38,6 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>
-      <Footer />
     </>
   )
 }
