@@ -134,7 +134,7 @@ const Register = () => {
         </Form.Group>
 
         <Button variant="light" type="submit">
-          Submit
+          Sign up
         </Button>
       </Form>
     </div>

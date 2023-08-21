@@ -77,7 +77,6 @@ exports.login = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   res.json({
-    message: "You are logged in",
     user: req.session.user,
   })
 }

@@ -7,6 +7,7 @@ import NotFound from "./components/pages/NotFound/NotFound"
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { fetchAds } from "./redux/subreducers/adRedux"
+import { fetchUser } from "./redux/subreducers/userRedux"
 import SingleAd from "./components/pages/SingleAd/SingleAd"
 import AdAdd from "./components/pages/AdAdd/AdAdd"
 import AdEdit from "./components/pages/AdEdit/AdEdit"
@@ -20,6 +21,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchAds())
+    dispatch(fetchUser())
   }, [dispatch])
   return (
     <>
