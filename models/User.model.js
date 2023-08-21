@@ -4,10 +4,12 @@ const userSchema = new mongoose.Schema({
   login: {
     type: String,
     required: true,
+    minLength: 7,
   },
   password: {
     type: String,
     required: true,
+    minLength: 8,
   },
   avatar: {
     type: String,

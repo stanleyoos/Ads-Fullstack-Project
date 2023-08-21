@@ -16,7 +16,7 @@ export const updateAds = (payload) => ({ type: UPDATE_ADS, payload })
 
 export const fetchAds = () => {
   return (dispatch) => {
-    fetch(`${API_URL}/ads`)
+    fetch(`${API_URL}/api/ads`)
       .then((res) => res.json())
       .then((ads) => dispatch(updateAds(ads)))
   }

@@ -4,8 +4,9 @@
   "description": "Fullstack app",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon server.js",
-    "client": "npm start --prefix client",
+    "start": "npm-run-all -p start:*",
+    "start:server": "nodemon server.js",
+    "start:client": "npm start --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "stanleyos",
@@ -21,5 +22,8 @@
     "mongoose": "^7.4.1",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }

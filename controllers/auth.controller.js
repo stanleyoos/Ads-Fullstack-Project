@@ -42,6 +42,7 @@ exports.register = async (req, res) => {
       res.status(400).json({ message: "Bad request" })
     }
   } catch (error) {
+    if (req.file) fs.unlinkSync(`${req.file.destination}/${req.file.filename}`)
     res.status(500).json({ message: error.message })
   }
 }

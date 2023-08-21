@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import { getAllAds } from "../../../redux/subreducers/adRedux"
-import { Spinner } from "react-bootstrap"
+import Spinner from "react-bootstrap/Spinner"
 import Ad from "../Ad/Ad"
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
