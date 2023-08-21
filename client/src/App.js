@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom"
 import Container from "./components/common/Container/Container"
 import NavBar from "./components/views/NavBar/NavBar"
 import HomePage from "./components/pages/HomePage/HomePage"
-import About from "./components/pages/About/About"
 import NotFound from "./components/pages/NotFound/NotFound"
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
@@ -15,6 +14,7 @@ import AdRemove from "./components/pages/AdRemove/AdRemove"
 import Login from "./components/pages/Login/Login"
 import Register from "./components/pages/Register/Register"
 import Logout from "./components/pages/Logout/Logout"
+import MyAccount from "./components/pages/MyAccount/MyAccount"
 
 function App() {
   const dispatch = useDispatch()
@@ -33,7 +33,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/account" element={<MyAccount />} />
           <Route path="/ad/:id" element={<SingleAd />} />
           <Route path="/ad/add" element={<AdAdd />} />
           <Route path="/ad/edit/:id" element={<AdEdit />} />

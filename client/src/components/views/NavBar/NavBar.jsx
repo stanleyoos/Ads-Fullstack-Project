@@ -2,7 +2,12 @@ import Container from "react-bootstrap/Container"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import { NavLink } from "react-router-dom"
-import { FaSignInAlt, FaUserPlus, FaSignOutAlt } from "react-icons/fa"
+import {
+  FaSignInAlt,
+  FaUserPlus,
+  FaSignOutAlt,
+  FaUserCircle,
+} from "react-icons/fa"
 //import styles from "./NavBar.module.scss"
 import { useSelector } from "react-redux"
 import { getLoggedUser } from "../../../redux/subreducers/userRedux"
@@ -46,9 +51,12 @@ const NavBar = () => {
                 </Nav.Link>
               )}
 
-              <Nav.Link as={NavLink} to="/about">
-                About
-              </Nav.Link>
+              {user && (
+                <Nav.Link as={NavLink} to="/account">
+                  <FaUserCircle className="me-1" />
+                  Profile
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
