@@ -19,6 +19,10 @@ import Logout from "./components/pages/Logout/Logout"
 function App() {
   const dispatch = useDispatch()
 
+  // fetch logged user to check if someone is logged, when so, add him to
+  // redux store.user and display button like login, register and logout
+  // depending on this slice of store
+
   useEffect(() => {
     dispatch(fetchAds())
     dispatch(fetchUser())

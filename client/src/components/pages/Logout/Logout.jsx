@@ -1,5 +1,22 @@
+import { API_URL } from "../../../config"
+import { useDispatch } from "react-redux"
+import { logOut } from "../../../redux/subreducers/userRedux"
+import { useNavigate } from "react-router-dom"
+
 const Logout = () => {
-  return <h1>Logout</h1>
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const options = {
+    method: "DELETE",
+  }
+
+  fetch(`${API_URL}/api/auth/logout`, options).then((res) => {
+    dispatch(logOut())
+    navigate("/")
+  })
+
+  return null
 }
 
 export default Logout
