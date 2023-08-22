@@ -1,5 +1,11 @@
+import AdForm from "../../features/AdForm/AdForm"
+
 const AdAdd = () => {
-  return <h1>AdAdd</h1>
+  const handleAdAdd = (e) => {
+    e.preventDefault()
+    alert("Added")
+  }
+  return <AdForm action={handleAdAdd} actionType="Add new AD" />
 }
 
 export default AdAdd

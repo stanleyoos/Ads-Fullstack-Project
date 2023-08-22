@@ -7,6 +7,7 @@ import {
   FaUserPlus,
   FaSignOutAlt,
   FaUserCircle,
+  FaPlus,
 } from "react-icons/fa"
 //import styles from "./NavBar.module.scss"
 import { useSelector } from "react-redux"
@@ -45,9 +46,9 @@ const NavBar = () => {
               )}
 
               {user && (
-                <Nav.Link as={NavLink} to="/logout">
-                  <FaSignOutAlt className="me-1" />
-                  Logout
+                <Nav.Link as={NavLink} to="/ad/add">
+                  <FaPlus className="me-1" />
+                  Add
                 </Nav.Link>
               )}
 
@@ -55,6 +56,13 @@ const NavBar = () => {
                 <Nav.Link as={NavLink} to="/account">
                   <FaUserCircle className="me-1" />
                   Profile
+                </Nav.Link>
+              )}
+
+              {user && (
+                <Nav.Link as={NavLink} to="/logout">
+                  <FaSignOutAlt className="me-1" />
+                  Logout
                 </Nav.Link>
               )}
             </Nav>

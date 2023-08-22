@@ -1,4 +1,4 @@
-import { redirect, useParams } from "react-router-dom"
+import { redirect, useParams, Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { getSingleAd } from "../../../redux/subreducers/adRedux"
 import Image from "react-bootstrap/Image"
@@ -16,16 +16,6 @@ const SingleAd = () => {
   const ad = useSelector((state) => getSingleAd(state, id))
 
   if (ad === undefined) redirect("/")
-
-  const handleAdEdit = () => {
-    alert("Ad edit")
-  }
-  const handleAdDelete = () => {
-    alert("Ad delete")
-  }
-  const date = new Date()
-
-  console.log(date)
 
   return (
     <>
@@ -55,8 +45,13 @@ const SingleAd = () => {
                 </Card.Text>
 
                 <div className={styles.links}>
-                  <FaTrash onClick={handleAdDelete} className="me-3" />
-                  <FaEdit onClick={handleAdEdit} />
+                  <Link to={`/ad/remove/${id}`}>
+                    <FaTrash className="me-3" />
+                  </Link>
+
+                  <Link to={`/ad/edit/${id}`}>
+                    <FaEdit />
+                  </Link>
                 </div>
               </Card.Body>
             </Card>
