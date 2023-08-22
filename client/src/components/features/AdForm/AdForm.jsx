@@ -2,20 +2,19 @@ import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import styles from "./AdForm.module.scss"
 import { useState } from "react"
+import "react-datepicker/dist/react-datepicker.css"
+import DatePicker from "react-datepicker"
 // import Alert from "react-bootstrap/Alert"
 // import Spinner from "react-bootstrap/Spinner"
 
 const AdForm = ({ action, actionType, ad }) => {
   const [title, setTitle] = useState(ad?.title || "")
   const [content, setContent] = useState(ad?.content || "")
+  const [date, setDate] = useState(new Date(ad?.date || new Date()))
+  const [price, setPrice] = useState(ad?.price || 0)
+  const [localization, setLocalization] = useState(ad?.localization || "")
+  const [image, setImage] = useState(null)
 
-  //   //DATEPICKER
-  //   const [date, setDate] = useState("")
-
-  //   const [image, setImage] = useState(null)
-  //   const [localization, setLocalization] = useState(null)
-
-  //   //LOGGED USER
   //   const [user, setUser] = useState("")
   //   const [status, setStatus] = useState(null) // null, 'loading', 'success', 'serverError', 'clientError', 'loginError'
 
@@ -23,7 +22,10 @@ const AdForm = ({ action, actionType, ad }) => {
     <div className={styles.registerForm}>
       <h1 className="mb-4">{actionType}</h1>
 
-      <Form className={styles.form} onSubmit={action}>
+      <Form
+        className={styles.form}
+        onSubmit={() => action(title, content, date, localization, image)}
+      >
         <Form.Group className="mb-4">
           <Form.Label>Title</Form.Label>
           <Form.Control
@@ -45,25 +47,41 @@ const AdForm = ({ action, actionType, ad }) => {
           />
         </Form.Group>
 
-        {/* <Form.Group className="mb-5">
-      <Form.Label>Phone number</Form.Label>
-      <Form.Control
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-        type="tel"
-        placeholder="Format 123-456-789"
-      />
-    </Form.Group>
+        <Form.Group className="mb-4 d-flex flex-column">
+          <Form.Label>Date</Form.Label>
+          <DatePicker selected={date} onChange={(date) => setDate(date)} />
+        </Form.Group>
 
-    <Form.Group className="mb-5">
-      <Form.Label>Avatar</Form.Label>
-      <Form.Control
-        onChange={(e) => setAvatar(e.target.files[0])}
-        type="file"
-      />
-    </Form.Group> */}
+        <Form.Group className="mb-4 ">
+          <Form.Label>Price</Form.Label>
+          <Form.Control
+            className="d-flex justify-self-center"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            style={{ width: "70px" }}
+            type="number"
+          />
+        </Form.Group>
 
-        <Button variant="light" type="submit">
+        <Form.Group className="mb-4">
+          <Form.Label>Localization</Form.Label>
+          <Form.Control
+            value={localization}
+            onChange={(e) => setLocalization(e.target.value)}
+            type="text"
+            placeholder="Enter your localization"
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-5">
+          <Form.Label>Image</Form.Label>
+          <Form.Control
+            onChange={(e) => setImage(e.target.files[0])}
+            type="file"
+          />
+        </Form.Group>
+
+        <Button variant="dark" type="submit" className="mb-5">
           {actionType === "Add new AD" ? "Add" : "Save"}
         </Button>
       </Form>

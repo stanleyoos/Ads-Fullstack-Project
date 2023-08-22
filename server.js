@@ -20,14 +20,16 @@ app.listen(port, () => {
   console.log(`Server is listening on port: ${port}`)
 })
 
-if (process.env.NODE_ENV !== "production") {
-  app.use(
-    cors({
-      origin: ["http://localhost:3000"],
-      credentials: true,
-    })
-  )
-}
+// if (process.env.NODE_ENV !== "production") {
+//   app.use(
+//     cors({
+//       origin: ["http://localhost:3000"],
+//       credentials: true,
+//     })
+//   )
+// }
+
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
@@ -47,6 +49,7 @@ app.use("/api/auth", authRoutes)
 
 app.use(express.static(path.join(__dirname, "/uploads/")))
 app.use(express.static(path.join(__dirname, "/public")))
+app.use(express.static(path.join(__dirname, "/client/build")))
 
 app.use(errorHandler)
 

@@ -16,7 +16,7 @@ export const fetchUser = () => {
   return (dispatch) => {
     fetch(`${API_URL}/api/auth/user`)
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => dispatch(logIn(data)))
     // when date is fetched add to redux user who is logged in
     // when app is started, in comonent App.js function fetchUser is executed
     //.then((data) => dispatch(logIn(data.user)))
