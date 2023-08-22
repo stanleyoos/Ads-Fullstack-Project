@@ -22,16 +22,14 @@ export const fetchAds = () => {
   }
 }
 
-// search
-
-// export const searchAds = (phrase) => {
-//   return (dispatch) => {
-//     // address
-//     fetch(`${API_URL}/api/ads`)
-//       .then((res) => res.json())
-//       .then((ads) => dispatch(updateAds(ads)))
-//   }
-// }
+// search ads by phrase
+export const searchAds = (phrase) => {
+  return (dispatch) => {
+    fetch(`${API_URL}/api/ads/phrase/${phrase}`)
+      .then((res) => res.json())
+      .then((ads) => dispatch(updateAds(ads)))
+  }
+}
 
 const adReducer = (statePart = [], action) => {
   switch (action.type) {

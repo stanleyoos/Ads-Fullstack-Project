@@ -12,16 +12,16 @@ const LOG_OUT = createActionName("LOG_OUT")
 export const logIn = (payload) => ({ type: LOG_IN, payload })
 export const logOut = () => ({ type: LOG_OUT })
 
-export const fetchUser = () => {
-  return (dispatch) => {
-    fetch(`${API_URL}/api/auth/user`)
-      .then((res) => res.json())
-      .then((data) => dispatch(logIn(data)))
-    // when date is fetched add to redux user who is logged in
-    // when app is started, in comonent App.js function fetchUser is executed
-    //.then((data) => dispatch(logIn(data.user)))
-  }
-}
+// export const fetchUser = () => {
+//   return (dispatch) => {
+//     fetch(`${API_URL}/api/auth/user`)
+//       .then((res) => res.json())
+//       .then((data) => dispatch(logIn(data)))
+//     // when date is fetched add to redux user who is logged in
+//     // when app is started, in comonent App.js function fetchUser is executed
+//     //.then((data) => dispatch(logIn(data.user)))
+//   }
+// }
 
 const userReducer = (statePart = null, action) => {
   switch (action.type) {

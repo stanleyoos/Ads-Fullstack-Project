@@ -77,7 +77,10 @@ exports.login = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   res.json({
-    user: req.session.user,
+    login: req.session.user.login,
+    id: req.session.user._id,
+    avatar: req.session.user.avatar,
+    phone: req.session.user.phone,
   })
 }
 

@@ -6,7 +6,7 @@ import { API_URL } from "../../../config"
 import Alert from "react-bootstrap/Alert"
 import Spinner from "react-bootstrap/Spinner"
 import { useDispatch } from "react-redux"
-import { fetchUser, logIn } from "../../../redux/subreducers/userRedux"
+import { logIn } from "../../../redux/subreducers/userRedux"
 
 const Login = () => {
   const [login, setLogin] = useState("")
@@ -31,10 +31,10 @@ const Login = () => {
       .then((res) => {
         if (res.status === 200) {
           setStatus("success")
-          //dispatch(logIn({ login }))
+          dispatch(logIn({ login }))
           setLogin("")
           setPassword("")
-          dispatch(fetchUser())
+          //dispatch(fetchUser())
         } else if (res.status === 400) setStatus("clientError")
         else setStatus("serverError")
       })

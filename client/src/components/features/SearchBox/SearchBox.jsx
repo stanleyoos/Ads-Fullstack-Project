@@ -3,18 +3,18 @@ import Form from "react-bootstrap/Form"
 import { FaSearch } from "react-icons/fa"
 import Button from "react-bootstrap/Button"
 import { useState } from "react"
-import { API_URL } from "../../../config"
+import { useDispatch } from "react-redux"
+import { searchAds } from "../../../redux/subreducers/adRedux"
 
 const SearchBox = () => {
   const [searchPhase, setSearchPhase] = useState("")
 
+  const dispatch = useDispatch()
+
   const handleSearchSubmit = (e) => {
     e.preventDefault()
     console.log(searchPhase)
-
-    // fetch(`${API_URL}/api/ads/phrase/${searchPhase}`)
-    //   .then((res) => res.json())
-    //   .then((ads) => console.log(ads))
+    dispatch(searchAds(searchAds))
   }
   return (
     <>
