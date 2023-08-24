@@ -1,27 +1,20 @@
 import AdForm from "../../features/AdForm/AdForm"
-import { API_URL } from "../../../config"
+import { useDispatch } from "react-redux"
+import { addAdRequest } from "../../../redux/subreducers/adRedux"
 
 const AdAdd = () => {
-  const handleAdAdd = (e) => {
-    e.preventDefault()
-
-    // const fd = new FormData()
-
-    // fd.append("title", title)
-    // fd.append("content", content)
-    // fd.append("date", date)
-    // fd.append("localization", localization)
-    // fd.append("image", image)
-    // fd.append("userInfo", { login: "JAMES" })
-
-    // // LOGGED USER INFO
-
-    // const options = {
-    //   method: "POST",
-    //   body: fd,
-    // }
-
-    // fetch(`${API_URL}/api/ads`, options)
+  const dispatch = useDispatch()
+  const handleAdAdd = (title, content, date, localization, image) => {
+    console.log(title, content, date, localization, image)
+    dispatch(
+      addAdRequest({
+        title,
+        content,
+        date,
+        localization,
+        image,
+      })
+    )
   }
   return <AdForm action={handleAdAdd} actionType="Add new AD" />
 }

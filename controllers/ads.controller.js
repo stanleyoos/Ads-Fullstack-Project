@@ -79,7 +79,6 @@ const addNewAd = async (req, res) => {
       const newAd = new Ad({
         title,
         content,
-        // czy datę powinno dać się wybrać z datePickera czy lepszym rozwiązaniem jest po prostu Date.now() ?
         date,
         price,
         localization,

@@ -15,7 +15,6 @@ const AdForm = ({ action, actionType, ad }) => {
   const [localization, setLocalization] = useState(ad?.localization || "")
   const [image, setImage] = useState(null)
 
-  //   const [user, setUser] = useState("")
   //   const [status, setStatus] = useState(null) // null, 'loading', 'success', 'serverError', 'clientError', 'loginError'
 
   return (
@@ -24,7 +23,10 @@ const AdForm = ({ action, actionType, ad }) => {
 
       <Form
         className={styles.form}
-        onSubmit={() => action(title, content, date, localization, image)}
+        onSubmit={(e) => {
+          e.preventDefault()
+          action(title, content, date, localization, image)
+        }}
       >
         <Form.Group className="mb-4">
           <Form.Label>Title</Form.Label>

@@ -31,6 +31,27 @@ export const searchAds = (phrase) => {
   }
 }
 
+export const addAdRequest = (ad) => {
+  return (dispatch) => {
+    const fd = new FormData()
+
+    fd.append("title", ad.title)
+    fd.append("content", ad.content)
+    fd.append("date", ad.date)
+    fd.append("price", ad.price)
+    fd.append("localization", ad.localization)
+    fd.append("image", ad.image)
+
+    const options = {
+      method: "POST",
+      body: fd,
+      credentials: "include",
+    }
+
+    fetch(`${API_URL}/api/ads`, options).then(() => dispatch(fetchAds()))
+  }
+}
+
 const adReducer = (statePart = [], action) => {
   switch (action.type) {
     case UPDATE_ADS:
