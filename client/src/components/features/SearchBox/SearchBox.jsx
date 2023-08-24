@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa"
 import Button from "react-bootstrap/Button"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { searchAds } from "../../../redux/subreducers/adRedux"
+import { fetchAds, searchAds } from "../../../redux/subreducers/adRedux"
 
 const SearchBox = () => {
   const [searchPhase, setSearchPhase] = useState("")
@@ -14,7 +14,8 @@ const SearchBox = () => {
   const handleSearchSubmit = (e) => {
     e.preventDefault()
     console.log(searchPhase)
-    dispatch(searchAds(searchAds))
+    if (searchPhase === "") dispatch(fetchAds())
+    else dispatch(searchAds(searchPhase))
   }
   return (
     <>
