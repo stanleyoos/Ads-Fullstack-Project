@@ -5,7 +5,6 @@ import { addAdRequest } from "../../../redux/subreducers/adRedux"
 const AdAdd = () => {
   const dispatch = useDispatch()
   const handleAdAdd = (title, content, price, date, localization, image) => {
-    console.log(title, content, date, localization, image)
     dispatch(
       addAdRequest({
         title,

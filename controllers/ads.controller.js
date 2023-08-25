@@ -99,31 +99,32 @@ const addNewAd = async (req, res) => {
 }
 
 const editAd = async (req, res) => {
-  const { title, content, date, price, localization, userInfo } = req.body
+  const { title, content, date, price, localization } = req.body
   try {
+    console.log("TRY")
     const ad = await Ad.findById(req.params.id)
+    console.log(ad.image)
     const fileType = req.file ? await getImageFileType(req.file) : "unknown"
     const acceptableExt = ["image/png", "image/jpeg", "image/gif"]
-    if (ad) {
-      ad.title = typeof title === "string" ? title : ad.title
-      ad.content = typeof content === "string" ? content : ad.content
-      ad.date = typeof date === "string" ? date : ad.date
-      ad.image =
-        req.file.filename && acceptableExt.includes(fileType)
-          ? req.file.filename
-          : ad.image
-      ad.price = typeof price === "string" ? price : ad.price
-      ad.localization =
-        typeof localization === "string" ? localization : ad.localization
-      ad.userInfo = typeof userInfo === "string" ? userInfo : ad.userInfo
+    if (ad && ad.userInfo === req.session.user._id) {
+      console.log("IF")
+      ad.title = title || ad.title
+      ad.content = content || ad.content
+      ad.date = date || ad.date
+      ad.image = req.file.filename || ad.image
+
+      ad.price = price || ad.price
+      ad.localization = localization || ad.localization
 
       await ad.save()
       res.json(ad)
     } else {
+      console.log("ELSE")
       fs.unlinkSync(`${req.file.destination}/${req.file.filename}`)
       res.status(404).json({ message: "Not found..." })
     }
   } catch (error) {
+    console.log("CATCH")
     res.status(500).json({ message: error })
   }
 }

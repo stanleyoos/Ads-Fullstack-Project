@@ -1,4 +1,5 @@
 import { API_URL } from "../../config"
+import { toast } from "react-toastify"
 
 // SELECTORS
 // Get all ads
@@ -49,6 +50,36 @@ export const addAdRequest = (ad) => {
     }
 
     fetch(`${API_URL}/api/ads`, options).then(() => dispatch(fetchAds()))
+  }
+}
+
+export const editAdRequest = (ad, id) => {
+  return (dispatch) => {
+    const fd = new FormData()
+
+    fd.append("title", ad.title)
+    fd.append("content", ad.content)
+    fd.append("date", ad.date)
+    fd.append("price", ad.price)
+    fd.append("localization", ad.localization)
+    fd.append("image", ad.image)
+
+    const options = {
+      method: "PUT",
+      body: fd,
+      credentials: "include",
+    }
+
+    fetch(`${API_URL}/api/ads/${id}`, options).then((res) => {
+      if (res.status === 200 || res.status === 201) {
+        toast.success("Redux success")
+        dispatch(fetchAds())
+      } else {
+        toast.warn("Fill all fields properly!")
+      }
+
+      //dispatch(fetchAds())
+    })
   }
 }
 
