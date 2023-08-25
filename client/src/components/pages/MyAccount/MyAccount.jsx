@@ -4,11 +4,29 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Card from "react-bootstrap/Card"
 import Image from "react-bootstrap/Image"
+import Spinner from "react-bootstrap/Spinner"
 import { useSelector } from "react-redux"
 import { getLoggedUser } from "../../../redux/subreducers/userRedux"
 
 const MyAccount = () => {
   const user = useSelector(getLoggedUser)
+
+  if (!user) {
+    return (
+      <div className="d-flex justify-content-center">
+        <Spinner
+          style={{
+            height: "50px",
+            width: "50px",
+          }}
+          animation="border"
+          role="status"
+        >
+          <span className="visually-hidden text-center"></span>
+        </Spinner>
+      </div>
+    )
+  }
   return (
     <>
       <Container>

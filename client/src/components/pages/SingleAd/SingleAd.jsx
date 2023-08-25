@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Card from "react-bootstrap/Card"
+import Spinner from "react-bootstrap/Spinner"
 import { FaTrash, FaEdit } from "react-icons/fa"
 import dateToString from "../../../utils/dateToString"
 
@@ -15,7 +16,22 @@ const SingleAd = () => {
 
   const ad = useSelector((state) => getSingleAd(state, id))
 
-  if (ad === undefined) redirect("/")
+  if (!ad) {
+    return (
+      <div className="d-flex justify-content-center">
+        <Spinner
+          style={{
+            height: "50px",
+            width: "50px",
+          }}
+          animation="border"
+          role="status"
+        >
+          <span className="visually-hidden text-center"></span>
+        </Spinner>
+      </div>
+    )
+  }
 
   return (
     <>
