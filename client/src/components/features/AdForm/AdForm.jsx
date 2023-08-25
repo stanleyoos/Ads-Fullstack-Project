@@ -57,7 +57,7 @@ const AdForm = ({ action, actionType, ad }) => {
         <Form.Group className="mb-4 ">
           <Form.Label>Price</Form.Label>
           <Form.Control
-            className="d-flex justify-self-center"
+            className=" mx-auto"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             style={{ width: "70px" }}
