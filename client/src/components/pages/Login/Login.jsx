@@ -24,6 +24,7 @@ const Login = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ login, password }),
+      credentials: "include",
     }
 
     setStatus("loading")

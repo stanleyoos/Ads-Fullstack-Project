@@ -25,7 +25,7 @@ const AdForm = ({ action, actionType, ad }) => {
         className={styles.form}
         onSubmit={(e) => {
           e.preventDefault()
-          action(title, content, date, localization, image)
+          action(title, content, price, date, localization, image)
         }}
       >
         <Form.Group className="mb-4">
@@ -45,7 +45,7 @@ const AdForm = ({ action, actionType, ad }) => {
             as="textarea"
             onChange={(e) => setContent(e.target.value)}
             type="text"
-            placeholder="Min 20 characters"
+            placeholder="Min 10 characters"
           />
         </Form.Group>
 

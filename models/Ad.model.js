@@ -4,13 +4,13 @@ const adSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-    minLength: 10,
+    minLength: 5,
     maxLength: 50,
   },
   content: {
     type: String,
     required: true,
-    minLength: 20,
+    minLength: 10,
     maxLength: 1000,
   },
   date: {
@@ -19,7 +19,7 @@ const adSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    required: true,
+    required: false,
   },
   price: {
     type: Number,
@@ -31,7 +31,7 @@ const adSchema = new mongoose.Schema({
   },
   userInfo: {
     type: String,
-    required: true,
+    required: false,
     ref: "User",
   },
 })

@@ -59,7 +59,6 @@ const deleteOne = async (req, res) => {
 const addNewAd = async (req, res) => {
   try {
     const { title, content, price, localization, date } = req.body
-
     const fileType = req.file ? await getImageFileType(req.file) : "unknown"
     const acceptableExt = ["image/png", "image/jpeg", "image/gif"]
 
