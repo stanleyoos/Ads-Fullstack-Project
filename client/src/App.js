@@ -14,6 +14,7 @@ import Login from "./components/pages/Login/Login"
 import Register from "./components/pages/Register/Register"
 import Logout from "./components/pages/Logout/Logout"
 import MyAccount from "./components/pages/MyAccount/MyAccount"
+import { fetchUser } from "./redux/subreducers/userRedux"
 
 function App() {
   const dispatch = useDispatch()
@@ -24,6 +25,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchAds())
+    dispatch(fetchUser())
   }, [dispatch])
   return (
     <>
