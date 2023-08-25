@@ -3,7 +3,8 @@ const mongoose = require("mongoose")
 const connectDB = () => {
   const NODE_ENV = process.env.NODE_ENV
   let dbUri = ""
-  if (NODE_ENV === "production") dbUri = "remote address"
+  if (NODE_ENV === "production")
+    dbUri = `mongodb+srv://festival-user:${process.env.DB_PASS}@cluster0.cf8sdtf.mongodb.net/AdsProjectDB?retryWrites=true&w=majority`
   else if (NODE_ENV === "test")
     dbUri = "mongodb://localhost:27017/AdsApplicationTest"
   else dbUri = "mongodb://localhost:27017/AdsApplication"
