@@ -41,16 +41,14 @@ const getBySearchedPhrase = async (req, res) => {
 }
 
 const deleteOne = async (req, res) => {
-  // delete ad only when req.session.user.id === ad.userInfo
-  // users can only delete their ads
   try {
     const ad = await Ad.findById(req.params.id)
     if (ad) {
       if (ad.userInfo === req.session.user._id) {
         await Ad.deleteOne({ _id: req.params.id })
         fs.unlinkSync(`./public/uploads/${ad.image}`)
-        res.json(ad)
-      } else res.status(404).json({ message: "You can delete only your ads!" })
+        res.status(200)
+      } else res.status(401).json({ message: "You can delete only your ads!" })
     } else res.status(404).json({ message: "Not found..." })
   } catch (error) {
     res.status(500).json({ message: error })
@@ -101,17 +99,23 @@ const addNewAd = async (req, res) => {
 const editAd = async (req, res) => {
   const { title, content, date, price, localization } = req.body
   try {
-    console.log("TRY")
     const ad = await Ad.findById(req.params.id)
-    console.log(ad.image)
     const fileType = req.file ? await getImageFileType(req.file) : "unknown"
     const acceptableExt = ["image/png", "image/jpeg", "image/gif"]
-    if (ad && ad.userInfo === req.session.user._id) {
-      console.log("IF")
+    if (ad) {
+      if (ad.userInfo !== req.session.user._id) {
+        return res.status(401).json({ message: "You can only edit your ads!" })
+      }
       ad.title = title || ad.title
       ad.content = content || ad.content
       ad.date = date || ad.date
-      ad.image = req.file.filename || ad.image
+
+      if (req.file) {
+        ad.image =
+          req.file.filename && acceptableExt.includes(fileType)
+            ? req.file.filename
+            : ad.image
+      }
 
       ad.price = price || ad.price
       ad.localization = localization || ad.localization
@@ -119,12 +123,10 @@ const editAd = async (req, res) => {
       await ad.save()
       res.json(ad)
     } else {
-      console.log("ELSE")
       fs.unlinkSync(`${req.file.destination}/${req.file.filename}`)
       res.status(404).json({ message: "Not found..." })
     }
   } catch (error) {
-    console.log("CATCH")
     res.status(500).json({ message: error })
   }
 }

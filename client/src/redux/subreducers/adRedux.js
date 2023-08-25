@@ -49,7 +49,12 @@ export const addAdRequest = (ad) => {
       credentials: "include",
     }
 
-    fetch(`${API_URL}/api/ads`, options).then(() => dispatch(fetchAds()))
+    fetch(`${API_URL}/api/ads`, options).then((res) => {
+      if (res.status === 201) {
+        dispatch(fetchAds())
+        toast.success("Ad added")
+      }
+    })
   }
 }
 
@@ -71,14 +76,14 @@ export const editAdRequest = (ad, id) => {
     }
 
     fetch(`${API_URL}/api/ads/${id}`, options).then((res) => {
-      if (res.status === 200 || res.status === 201) {
-        toast.success("Redux success")
+      if (res.status === 201) {
+        toast.success("Ad edited!")
         dispatch(fetchAds())
+      } else if (res.status === 401) {
+        toast.error("You can only edit your posts!")
       } else {
         toast.warn("Fill all fields properly!")
       }
-
-      //dispatch(fetchAds())
     })
   }
 }
@@ -90,7 +95,14 @@ export const deleteAdRequest = (id) => {
       credentials: "include",
     }
 
-    fetch(`${API_URL}/api/ads/${id}`, options).then(() => dispatch(fetchAds()))
+    fetch(`${API_URL}/api/ads/${id}`, options).then((res) => {
+      if (res.status === 200) {
+        dispatch(fetchAds())
+        toast.success("Ad successfuly deleted")
+      } else if (res.status === 401) {
+        toast.error("You can only delete your posts!")
+      } else toast.warning("Something went wrong!")
+    })
   }
 }
 

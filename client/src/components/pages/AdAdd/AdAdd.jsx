@@ -1,6 +1,7 @@
 import AdForm from "../../features/AdForm/AdForm"
 import { useDispatch } from "react-redux"
 import { addAdRequest } from "../../../redux/subreducers/adRedux"
+import { ToastContainer } from "react-toastify"
 
 const AdAdd = () => {
   const dispatch = useDispatch()
@@ -16,7 +17,12 @@ const AdAdd = () => {
       })
     )
   }
-  return <AdForm action={handleAdAdd} actionType="Add new AD" />
+  return (
+    <>
+      <AdForm action={handleAdAdd} actionType="Add new AD" />
+      <ToastContainer autoClose={2000} />
+    </>
+  )
 }
 
 export default AdAdd

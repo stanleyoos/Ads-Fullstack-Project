@@ -21,7 +21,7 @@ const AdEdit = () => {
           price: Number(price),
           date,
           localization,
-          image: image === null ? ad.image : image,
+          image,
         },
         id
       )

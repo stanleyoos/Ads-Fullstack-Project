@@ -15,8 +15,6 @@ const AdForm = ({ action, actionType, ad }) => {
   const [localization, setLocalization] = useState(ad?.localization || "")
   const [image, setImage] = useState(null)
 
-  //   const [status, setStatus] = useState(null) // null, 'loading', 'success', 'serverError', 'clientError', 'loginError'
-
   return (
     <div className={styles.registerForm}>
       <h1 className="mb-4">{actionType}</h1>
