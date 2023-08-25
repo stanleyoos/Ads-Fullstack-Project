@@ -13,7 +13,6 @@ const SearchBox = () => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault()
-    console.log(searchPhase)
     if (searchPhase === "") dispatch(fetchAds())
     else dispatch(searchAds(searchPhase))
   }

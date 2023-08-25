@@ -48,6 +48,7 @@ const deleteOne = async (req, res) => {
     if (ad) {
       if (ad.userInfo === req.session.user._id) {
         await Ad.deleteOne({ _id: req.params.id })
+        fs.unlinkSync(`./public/uploads/${ad.image}`)
         res.json(ad)
       } else res.status(404).json({ message: "You can delete only your ads!" })
     } else res.status(404).json({ message: "Not found..." })

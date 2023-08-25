@@ -52,6 +52,17 @@ export const addAdRequest = (ad) => {
   }
 }
 
+export const deleteAdRequest = (id) => {
+  return (dispatch) => {
+    const options = {
+      method: "DELETE",
+      credentials: "include",
+    }
+
+    fetch(`${API_URL}/api/ads/${id}`, options).then(() => dispatch(fetchAds()))
+  }
+}
+
 const adReducer = (statePart = [], action) => {
   switch (action.type) {
     case UPDATE_ADS:

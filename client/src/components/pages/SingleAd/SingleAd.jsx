@@ -1,4 +1,4 @@
-import { redirect, useParams, Link } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { getSingleAd } from "../../../redux/subreducers/adRedux"
 import Image from "react-bootstrap/Image"

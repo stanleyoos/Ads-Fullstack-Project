@@ -6,7 +6,7 @@ import { API_URL } from "../../../config"
 import Alert from "react-bootstrap/Alert"
 import Spinner from "react-bootstrap/Spinner"
 import { useDispatch } from "react-redux"
-import { logIn, fetchUser } from "../../../redux/subreducers/userRedux"
+import { fetchUser } from "../../../redux/subreducers/userRedux"
 
 const Login = () => {
   const [login, setLogin] = useState("")
