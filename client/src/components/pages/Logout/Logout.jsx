@@ -11,7 +11,7 @@ const Logout = () => {
     method: "DELETE",
   }
 
-  fetch(`${API_URL}/api/auth/logout`, options).then((res) => {
+  fetch(`${API_URL}/auth/logout`, options).then((res) => {
     dispatch(logOut())
     navigate("/")
   })

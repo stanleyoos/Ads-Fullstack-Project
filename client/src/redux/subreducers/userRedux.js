@@ -14,7 +14,7 @@ export const logOut = () => ({ type: LOG_OUT })
 
 export const fetchUser = () => {
   return (dispatch) => {
-    fetch(`${API_URL}/api/auth/user`, { credentials: "include" })
+    fetch(`${API_URL}/auth/user`, { credentials: "include" })
       .then((res) => res.json())
       .then((data) => dispatch(logIn(data)))
   }

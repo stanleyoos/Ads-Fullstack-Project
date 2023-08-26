@@ -27,7 +27,7 @@ const Login = () => {
       credentials: "include",
     }
 
-    fetch(`${API_URL}/api/auth/login`, options)
+    fetch(`${API_URL}/auth/login`, options)
       .then((res) => {
         if (res.status === 200) {
           toast.success("User logged in!")

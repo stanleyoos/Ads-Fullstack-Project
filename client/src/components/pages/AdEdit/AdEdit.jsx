@@ -1,7 +1,7 @@
 import AdForm from "../../features/AdForm/AdForm"
 import { useSelector } from "react-redux"
 import { getSingleAd } from "../../../redux/subreducers/adRedux"
-import { Navigate, useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { editAdRequest } from "../../../redux/subreducers/adRedux"
 import { ToastContainer } from "react-toastify"
