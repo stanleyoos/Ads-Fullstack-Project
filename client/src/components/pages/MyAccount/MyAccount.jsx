@@ -7,6 +7,7 @@ import Image from "react-bootstrap/Image"
 import Spinner from "react-bootstrap/Spinner"
 import { useSelector } from "react-redux"
 import { getLoggedUser } from "../../../redux/subreducers/userRedux"
+import { IMGS_URL } from "../../../config"
 
 const MyAccount = () => {
   const user = useSelector(getLoggedUser)
@@ -33,7 +34,7 @@ const MyAccount = () => {
         <Row>
           <Col sm={4} className="text-center mx-auto">
             <Image
-              src={"http://localhost:8000/uploads/" + user.avatar}
+              src={IMGS_URL + user.avatar}
               alt="ad's image"
               className={styles.image}
               roundedCircle

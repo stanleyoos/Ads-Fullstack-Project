@@ -10,6 +10,7 @@ import Card from "react-bootstrap/Card"
 import Spinner from "react-bootstrap/Spinner"
 import { FaTrash, FaEdit } from "react-icons/fa"
 import dateToString from "../../../utils/dateToString"
+import { IMGS_URL } from "../../../config"
 
 const SingleAd = () => {
   const { id } = useParams()
@@ -39,7 +40,7 @@ const SingleAd = () => {
         <Row>
           <Col sm={6} className="text-center">
             <Image
-              src={"http://localhost:8000/uploads/" + ad.image}
+              src={IMGS_URL + ad.image}
               alt="ad's image"
               className="rounded "
               fluid

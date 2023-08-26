@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card"
 import styles from "./Ad.module.scss"
 import { Link } from "react-router-dom"
 import clsx from "clsx"
+import { IMGS_URL } from "../../../config"
 
 function Ad({ title, image, content, _id }) {
   return (
@@ -10,7 +11,7 @@ function Ad({ title, image, content, _id }) {
       <Card.Img
         className={clsx("rounded mt-2", styles.adImage)}
         variant="top"
-        src={"http://localhost:8000/uploads/" + image}
+        src={IMGS_URL + image}
         alt="ad's image"
       />
       <Card.Body>
