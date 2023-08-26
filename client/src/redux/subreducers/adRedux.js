@@ -76,7 +76,7 @@ export const editAdRequest = (ad, id) => {
     }
 
     fetch(`${API_URL}/ads/${id}`, options).then((res) => {
-      if (res.status === 201) {
+      if (res.status === 200) {
         toast.success("Ad edited!")
         dispatch(fetchAds())
       } else if (res.status === 401) {
